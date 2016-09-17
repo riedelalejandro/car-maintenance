@@ -6,9 +6,9 @@ use CarMaintenance\Traits\Identifiable;
 use CarMaintenance\Traits\Timestamps;
 
 /**
- * Class TrajectoryPrediction.
+ * Class Reminder.
  */
-class TrajectoryPrediction
+class Reminder
 {
     use Identifiable;
     use Timestamps;
@@ -17,14 +17,20 @@ class TrajectoryPrediction
      * @var Car
      */
     private $car;
+    /**
+     * @var Service
+     */
+    private $service;
 
     /**
-     * TrajectoryPrediction constructor.
+     * Reminder constructor.
      *
-     * @param Car $car
+     * @param Car     $car
+     * @param Service $service
      */
-    public function __construct(Car $car)
+    public function __construct(Car $car, Service $service)
     {
         $this->car = $car;
+        $this->service = $service;
     }
 }
