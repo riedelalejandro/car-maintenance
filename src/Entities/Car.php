@@ -7,6 +7,7 @@ use CarMaintenance\Traits\Entities\Timestamps;
 use CarMaintenance\ValueObjects\CarDomain;
 use CarMaintenance\ValueObjects\CarStatus;
 use CarMaintenance\ValueObjects\Trajectory;
+use CarMaintenance\ValueObjects\TrajectoryPredictionPeriod;
 use CarMaintenance\ValueObjects\Vin;
 use Doctrine\Common\Collections\ArrayCollection;
 use Illuminate\Support\Collection;
@@ -98,5 +99,28 @@ class Car
     public function getTrajectoryEntries()
     {
         return new Collection($this->trajectoryEntries->getValues());
+    }
+
+    /**
+     * @param Trajectory                 $trajectory
+     * @param TrajectoryPredictionPeriod $trajectoryPredictionPeriod
+     *
+     * @return TrajectoryEntry
+     */
+    public function addTrajectoryPrediction(Trajectory $trajectory, TrajectoryPredictionPeriod $trajectoryPredictionPeriod)
+    {
+        $trajectoryPrediction = new TrajectoryPrediction($this, $trajectory, $trajectoryPredictionPeriod);
+
+        $this->trajectoryPredictions->add($trajectoryPrediction);
+
+        return $trajectoryPrediction;
+    }
+
+    /**
+     * @return TrajectoryPrediction[]|Collection
+     */
+    public function getTrajectoryPredictions()
+    {
+        return new Collection($this->trajectoryPredictions->getValues());
     }
 }

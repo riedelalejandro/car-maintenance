@@ -41,4 +41,20 @@ class TrajectoryPrediction
         $this->trajectory = $trajectory;
         $this->trajectoryPeriod = $trajectoryPeriod;
     }
+
+    /**
+     * @return Trajectory
+     */
+    public function getTrajectory()
+    {
+        return $this->trajectory;
+    }
+
+    /**
+     * @return TrajectoryPredictionPeriod
+     */
+    public function getTrajectoryPeriod()
+    {
+        return $this->trajectoryPeriod;
+    }
 }
