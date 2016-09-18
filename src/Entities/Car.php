@@ -2,11 +2,14 @@
 
 namespace CarMaintenance\Entities;
 
-use CarMaintenance\Traits\Identifiable;
-use CarMaintenance\Traits\Timestamps;
+use CarMaintenance\Traits\Entities\Identifiable;
+use CarMaintenance\Traits\Entities\Timestamps;
 use CarMaintenance\ValueObjects\CarDomain;
+use CarMaintenance\ValueObjects\CarStatus;
+use CarMaintenance\ValueObjects\Trajectory;
 use CarMaintenance\ValueObjects\Vin;
 use Doctrine\Common\Collections\ArrayCollection;
+use Illuminate\Support\Collection;
 
 /**
  * Class Car.
@@ -73,5 +76,27 @@ class Car
         $this->trajectoryPredictions = new ArrayCollection();
         $this->reminders = new ArrayCollection();
         $this->bookings = new ArrayCollection();
+    }
+
+    /**
+     * @param Trajectory $trajectory
+     *
+     * @return TrajectoryEntry
+     */
+    public function addTrajectoryEntry(Trajectory $trajectory)
+    {
+        $trajectoryEntry = new TrajectoryEntry($this, $trajectory);
+
+        $this->trajectoryEntries->add($trajectoryEntry);
+
+        return $trajectoryEntry;
+    }
+
+    /**
+     * @return TrajectoryEntry[]|Collection
+     */
+    public function getTrajectoryEntries()
+    {
+        return new Collection($this->trajectoryEntries->getValues());
     }
 }

@@ -2,8 +2,10 @@
 
 namespace CarMaintenance\Entities;
 
-use CarMaintenance\Traits\Identifiable;
-use CarMaintenance\Traits\Timestamps;
+use CarMaintenance\Traits\Entities\Identifiable;
+use CarMaintenance\Traits\Entities\Timestamps;
+use CarMaintenance\ValueObjects\TrajectoryPredictionPeriod;
+use CarMaintenance\ValueObjects\Trajectory;
 
 /**
  * Class TrajectoryPrediction.
@@ -17,14 +19,26 @@ class TrajectoryPrediction
      * @var Car
      */
     private $car;
+    /**
+     * @var Trajectory
+     */
+    private $trajectory;
+    /**
+     * @var TrajectoryPredictionPeriod
+     */
+    private $trajectoryPeriod;
 
     /**
      * TrajectoryPrediction constructor.
      *
-     * @param Car $car
+     * @param Car                        $car
+     * @param Trajectory                 $trajectory
+     * @param TrajectoryPredictionPeriod $trajectoryPeriod
      */
-    public function __construct(Car $car)
+    public function __construct(Car $car, Trajectory $trajectory, TrajectoryPredictionPeriod $trajectoryPeriod)
     {
         $this->car = $car;
+        $this->trajectory = $trajectory;
+        $this->trajectoryPeriod = $trajectoryPeriod;
     }
 }

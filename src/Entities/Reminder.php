@@ -2,8 +2,9 @@
 
 namespace CarMaintenance\Entities;
 
-use CarMaintenance\Traits\Identifiable;
-use CarMaintenance\Traits\Timestamps;
+use CarMaintenance\Traits\Entities\Identifiable;
+use CarMaintenance\Traits\Entities\Timestamps;
+use CarMaintenance\ValueObjects\ReminderStatus;
 
 /**
  * Class Reminder.
@@ -21,6 +22,10 @@ class Reminder
      * @var Service
      */
     private $service;
+    /**
+     * @var ReminderStatus
+     */
+    private $reminderStatus;
 
     /**
      * Reminder constructor.
@@ -32,5 +37,6 @@ class Reminder
     {
         $this->car = $car;
         $this->service = $service;
+        $this->reminderStatus = ReminderStatus::pending();
     }
 }

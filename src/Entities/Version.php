@@ -2,9 +2,9 @@
 
 namespace CarMaintenance\Entities;
 
-use CarMaintenance\Traits\Identifiable;
-use CarMaintenance\Traits\Nameable;
-use CarMaintenance\Traits\Timestamps;
+use CarMaintenance\Traits\Entities\Identifiable;
+use CarMaintenance\Traits\Entities\Nameable;
+use CarMaintenance\Traits\Entities\Timestamps;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**

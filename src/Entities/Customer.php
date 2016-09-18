@@ -2,8 +2,9 @@
 
 namespace CarMaintenance\Entities;
 
-use CarMaintenance\Traits\Identifiable;
-use CarMaintenance\Traits\Timestamps;
+use CarMaintenance\Traits\Entities\Identifiable;
+use CarMaintenance\Traits\Entities\Timestamps;
+use CarMaintenance\ValueObjects\CustomerStatus;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
