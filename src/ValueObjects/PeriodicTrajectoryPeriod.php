@@ -6,9 +6,9 @@ use CarMaintenance\Exceptions\ValueObjects\CreateValueObjectException;
 use Illuminate\Support\Facades\Validator;
 
 /**
- * Class TrajectoryPredictionPeriod.
+ * Class PeriodicTrajectoryPeriod.
  */
-class TrajectoryPredictionPeriod
+class PeriodicTrajectoryPeriod
 {
     /**
      * @var int
@@ -20,7 +20,7 @@ class TrajectoryPredictionPeriod
     private $month;
 
     /**
-     * TrajectoryPredictionPeriod constructor.
+     * PeriodicTrajectoryPeriod constructor.
      *
      * @param int $year
      * @param int $month

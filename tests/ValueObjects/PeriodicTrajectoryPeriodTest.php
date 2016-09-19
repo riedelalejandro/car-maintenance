@@ -3,14 +3,14 @@
 namespace Test\ValueObjects;
 
 use CarMaintenance\Exceptions\ValueObjects\CreateValueObjectException;
-use CarMaintenance\ValueObjects\TrajectoryPredictionPeriod;
+use CarMaintenance\ValueObjects\PeriodicTrajectoryPeriod;
 use Faker\Factory;
 use Test\Src\TestCase;
 
 /**
- * Class TrajectoryPredictionPeriodTest.
+ * Class PeriodicTrajectoryPeriodTest.
  */
-class TrajectoryPredictionPeriodTest extends TestCase
+class PeriodicTrajectoryPeriodTest extends TestCase
 {
     /**
      * @var \Faker\Generator
@@ -28,14 +28,14 @@ class TrajectoryPredictionPeriodTest extends TestCase
     {
         $this->expectException(CreateValueObjectException::class);
 
-        new TrajectoryPredictionPeriod(null, $this->faker->numberBetween(date('Y') - 1, date('Y') + 1));
+        new PeriodicTrajectoryPeriod(null, $this->faker->numberBetween(date('Y') - 1, date('Y') + 1));
     }
 
     public function test_value_object_trajectory_prediction_period_empty_year()
     {
         $this->expectException(CreateValueObjectException::class);
 
-        new TrajectoryPredictionPeriod($this->faker->numberBetween(1, 12), null);
+        new PeriodicTrajectoryPeriod($this->faker->numberBetween(1, 12), null);
     }
 
     public function test_value_object_trajectory_prediction_period_valid()
@@ -43,7 +43,7 @@ class TrajectoryPredictionPeriodTest extends TestCase
         $validYear = $this->faker->numberBetween(date('Y') - 1, date('Y') + 1);
         $validMonth = $this->faker->numberBetween(1, 12);
 
-        $month = new TrajectoryPredictionPeriod($validYear, $validMonth);
+        $month = new PeriodicTrajectoryPeriod($validYear, $validMonth);
 
         $this->assertEquals($month->getYear(), $validYear);
         $this->assertEquals($month->getMonth(), $validMonth);

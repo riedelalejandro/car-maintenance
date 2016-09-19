@@ -93,13 +93,13 @@ class CarService
         return $trajectoryEntry;
     }
 
-    public function addTrajectoryPrediction(Entities\Car $car, $trajectory, $year, $month)
+    public function addPeriodicTrajectory(Entities\Car $car, $trajectory, $year, $month)
     {
         try {
             $trajectory = new ValueObjects\Trajectory($trajectory);
-            $period = new ValueObjects\TrajectoryPredictionPeriod($year, $month);
+            $period = new ValueObjects\PeriodicTrajectoryPeriod($year, $month);
 
-            $trajectoryPredictionEntry = $car->addTrajectoryPrediction($trajectory, $period);
+            $periodicTrajectory = $car->addPeriodicTrajectory($trajectory, $period);
 
             $this->cars->save($car);
         } catch (ValueObjectException $e) {
@@ -110,8 +110,8 @@ class CarService
             throw new ServiceException(new MessageBag([$e->getMessage()]));
         }
 
-//        event(new CarTrajectoryPredictionAdded($trajectoryPredictionEntry));
+//        event(new CarPeriodicTrajectoryAdded($periodicTrajectory));
 
-        return $trajectoryPredictionEntry;
+        return $periodicTrajectory;
     }
 }

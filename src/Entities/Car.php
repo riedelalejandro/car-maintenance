@@ -7,7 +7,7 @@ use CarMaintenance\Traits\Entities\Timestamps;
 use CarMaintenance\ValueObjects\CarDomain;
 use CarMaintenance\ValueObjects\CarStatus;
 use CarMaintenance\ValueObjects\Trajectory;
-use CarMaintenance\ValueObjects\TrajectoryPredictionPeriod;
+use CarMaintenance\ValueObjects\PeriodicTrajectoryPeriod;
 use CarMaintenance\ValueObjects\Vin;
 use Doctrine\Common\Collections\ArrayCollection;
 use Illuminate\Support\Collection;
@@ -37,9 +37,9 @@ class Car
      */
     private $trajectoryEntries;
     /**
-     * @var TrajectoryPrediction[]|ArrayCollection
+     * @var PeriodicTrajectory[]|ArrayCollection
      */
-    private $trajectoryPredictions;
+    private $periodicTrajectories;
     /**
      * @var Reminder[]|ArrayCollection
      */
@@ -78,7 +78,7 @@ class Car
         $this->carDomain = $carDomain;
 
         $this->trajectoryEntries = new ArrayCollection();
-        $this->trajectoryPredictions = new ArrayCollection();
+        $this->periodicTrajectories = new ArrayCollection();
         $this->reminders = new ArrayCollection();
         $this->bookings = new ArrayCollection();
     }
@@ -106,26 +106,26 @@ class Car
     }
 
     /**
-     * @param Trajectory                 $trajectory
-     * @param TrajectoryPredictionPeriod $trajectoryPredictionPeriod
+     * @param Trajectory               $trajectory
+     * @param PeriodicTrajectoryPeriod $periodicTrajectoryPeriod
      *
-     * @return TrajectoryEntry
+     * @return PeriodicTrajectory
      */
-    public function addTrajectoryPrediction(Trajectory $trajectory, TrajectoryPredictionPeriod $trajectoryPredictionPeriod)
+    public function addPeriodicTrajectory(Trajectory $trajectory, PeriodicTrajectoryPeriod $periodicTrajectoryPeriod)
     {
-        $trajectoryPrediction = new TrajectoryPrediction($this, $trajectory, $trajectoryPredictionPeriod);
+        $periodicTrajectory = new PeriodicTrajectory($this, $trajectory, $periodicTrajectoryPeriod);
 
-        $this->trajectoryPredictions->add($trajectoryPrediction);
+        $this->periodicTrajectories->add($periodicTrajectory);
 
-        return $trajectoryPrediction;
+        return $periodicTrajectory;
     }
 
     /**
-     * @return TrajectoryPrediction[]|Collection
+     * @return PeriodicTrajectory[]|Collection
      */
-    public function getTrajectoryPredictions()
+    public function getPeriodicTrajectories()
     {
-        return new Collection($this->trajectoryPredictions->getValues());
+        return new Collection($this->periodicTrajectories->getValues());
     }
 
     /**

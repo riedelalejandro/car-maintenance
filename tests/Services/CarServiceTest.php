@@ -4,7 +4,7 @@ namespace Test\Services;
 
 use CarMaintenance\Entities\Car;
 use CarMaintenance\Entities\TrajectoryEntry;
-use CarMaintenance\Entities\TrajectoryPrediction;
+use CarMaintenance\Entities\PeriodicTrajectory;
 use CarMaintenance\Exceptions\Repositories\WriteRepositoryException;
 use CarMaintenance\Exceptions\Services\ServiceException;
 use CarMaintenance\Factories\Entities\CarFactory;
@@ -214,10 +214,10 @@ class CarServiceTest extends TestCase
         $year = date('Y');
         $month = 1;
 
-        $trajectoryEntry = $this->carService->addTrajectoryPrediction($car, $trajectory, $year, $month);
+        $trajectoryEntry = $this->carService->addPeriodicTrajectory($car, $trajectory, $year, $month);
 
         $this->assertEquals($trajectoryEntry->getTrajectory()->__toString(), $trajectory);
-        $this->assertCount(1, $car->getTrajectoryPredictions()->values());
-        $this->assertInstanceOf(TrajectoryPrediction::class, $car->getTrajectoryPredictions()->first());
+        $this->assertCount(1, $car->getPeriodicTrajectories()->values());
+        $this->assertInstanceOf(PeriodicTrajectory::class, $car->getPeriodicTrajectories()->first());
     }
 }
