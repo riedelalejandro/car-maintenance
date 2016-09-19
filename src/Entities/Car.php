@@ -56,6 +56,10 @@ class Car
      * @var CarDomain
      */
     private $carDomain;
+    /**
+     * @var Trajectory|null
+     */
+    private $monthlyTrajectory;
 
     /**
      * Car constructor.
@@ -122,5 +126,85 @@ class Car
     public function getTrajectoryPredictions()
     {
         return new Collection($this->trajectoryPredictions->getValues());
+    }
+
+    /**
+     * @return Customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * @return Version
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+     * @return CarStatus
+     */
+    public function getCarStatus()
+    {
+        return $this->carStatus;
+    }
+
+    /**
+     * @return Vin
+     */
+    public function getVin()
+    {
+        return $this->vin;
+    }
+
+    /**
+     * @return CarDomain
+     */
+    public function getCarDomain()
+    {
+        return $this->carDomain;
+    }
+
+    /**
+     * @return Trajectory|null
+     */
+    public function getMonthlyTrajectory()
+    {
+        return $this->monthlyTrajectory;
+    }
+
+    /**
+     * @param Version $version
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+    }
+
+    /**
+     * @param Vin $vin
+     */
+    public function setVin($vin)
+    {
+        $this->vin = $vin;
+    }
+
+    /**
+     * @param CarDomain $carDomain
+     */
+    public function setCarDomain($carDomain)
+    {
+        $this->carDomain = $carDomain;
+    }
+
+    /**
+     * @param Trajectory|null $monthlyTrajectory
+     */
+    public function setMonthlyTrajectory($monthlyTrajectory)
+    {
+        $this->monthlyTrajectory = $monthlyTrajectory;
     }
 }
